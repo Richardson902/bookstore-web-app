@@ -1,0 +1,38 @@
+<%- include ("partials/head"); %>
+<body>
+  <main>
+    <section class="cart">
+      <h1>Your Cart</h1>
+      <table class="cart-details">
+        <tr>
+          <th></th>
+          <th>Item Name</th>
+          <th>Each</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Remove</th>
+        </tr>
+        <% let subtotal = 0; %> <% cart.forEach(item => { %>
+        <tr>
+          <td><img src="/media/<%= item.img %>" alt="<%= item.title %>" /></td>
+          <td><%= item.title %></td>
+          <td>$<%= item.price %></td>
+          <td><%= item.quantity %></td>
+          <td>$<%= item.price * item.quantity %></td>
+          <td>
+            <button onclick="removeBook('<%= item.id %>')">Remove</button>
+          </td>
+        </tr>
+        <% subtotal += item.price * item.quantity; %> <% }); %>
+      </table>
+      <div class="total-btn">
+        <h3>Subtotal: $<%= subtotal %></h3>
+        <% if (cart.length > 0) { %>
+        <button onclick="window.location.href = '/checkout'">Checkout</button>
+        <% } %>
+      </div>
+    </section>
+  </main>
+  <script src="/scripts/removeBook.js"></script>
+</body>
+<%- include ("partials/footer"); %>

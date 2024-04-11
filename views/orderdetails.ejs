@@ -1,0 +1,81 @@
+<%- include ("partials/head"); %>
+<body>
+  <main>
+    <section class="overview">
+      <h1>Thank you for your purchase!</h1>
+      <div class="view-order-details">
+        <div class="form-details-container">
+          <h2>Shipping Information</h2>
+          <table class="form-details">
+            <tr>
+              <td><strong>First Name:</strong></td>
+              <td><%= formData.fname %></td>
+            </tr>
+            <tr>
+              <td><strong>Last Name:</strong></td>
+              <td><%= formData.lname %></td>
+            </tr>
+            <tr>
+              <td><strong>Address:</strong></td>
+              <td><%= formData.address %></td>
+            </tr>
+            <tr>
+              <td><strong>City:</strong></td>
+              <td><%= formData.city %></td>
+            </tr>
+            <tr>
+              <td><strong>Country:</strong></td>
+              <td><%= formData.country %></td>
+            </tr>
+            <tr>
+              <td><strong>Province:</strong></td>
+              <td><%= formData.province %></td>
+            </tr>
+            <tr>
+              <td><strong>Postal Code:</strong></td>
+              <td><%= formData.postal %></td>
+            </tr>
+            <tr>
+              <td><strong>Phone Number:</strong></td>
+              <td><%= formData.phone %></td>
+            </tr>
+            <tr>
+              <td><strong>Email:</strong></td>
+              <td><%= formData.email %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="order-info">
+          <h2>Order Summary</h2>
+          <table class="order-details">
+            <tr>
+              <th>Item Name</th>
+              <th>QTY</th>
+              <th>Total</th>
+            </tr>
+            <% cart.forEach(item => { %>
+            <tr>
+              <td><%= item.title %></td>
+              <td><%= item.quantity %></td>
+              <td><%= item.quantity * item.price %></td>
+            </tr>
+            <% }); %>
+            <tr>
+              <td colspan="2"><strong>Subtotal:</strong></td>
+              <td id="subtotal-value">$<%= subtotal.toFixed(2) %></td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>Tax:</strong></td>
+              <td id="tax-value">$<%= taxAmount.toFixed(2) %></td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>Total:</strong></td>
+              <td id="total-value">$<%= totalAmount.toFixed(2) %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  <%- include ("partials/footer"); %>
+</body>

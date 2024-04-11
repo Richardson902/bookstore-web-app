@@ -1,0 +1,27 @@
+<%- include ("partials/head"); %>
+<body>
+  <main>
+    <section class="book-details">
+      <div class="book-img">
+        <img src="/media/<%- book.image %>" alt="<%= book.title %>" />
+      </div>
+      <div class="book-info">
+        <h1><%= book.title %></h1>
+        <p><span>Author:</span> <%= book.author %></p>
+        <p><span>Genre:</span> <%= book.genre %></p>
+        <p><span>Price:</span> $<%= book.price %></p>
+        <p><span>Available:</span> <% if (book.available === "TRUE") { %>Yes <% } else { %>No<% } %></p>
+        <div class="add-to-cart">
+          <% if (book.available === "TRUE") { %>
+          <button id="add-to-cart-btn" onclick="addToCart('<%= book.id %>')">Add to Cart</button>
+          <% } else { %>
+            <button id="out-of-stock-btn" disabled>Out of Stock</button>
+            <% } %>
+        </div>
+      </form>
+      </div>
+    </section>
+  </main>
+  <%- include ("partials/footer"); %>
+  <script src="/scripts/addToCart.js"></script>
+</body>
